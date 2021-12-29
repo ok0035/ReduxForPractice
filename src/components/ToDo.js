@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { actionCreators } from "../store";
+import { remove } from "../store";
 
 /**
  *
@@ -11,17 +11,16 @@ import { actionCreators } from "../store";
 function ToDo(props) {
   return (
     <li id={props.id}>
-      <Link to={`/${props.id}`}>
-        {props.text} <button onClick={props.onBtnClick}>DEL</button>
-      </Link>
+      <Link to={`/${props.id}`}>{props.text}</Link>
+      <button onClick={props.onBtnClick}>DEL</button>
     </li>
   );
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-  // console.log(ownProps);
+  console.log(ownProps);
   return {
-    onBtnClick: () => dispatch(actionCreators.deleteToDo(ownProps.id)),
+    onBtnClick: () => dispatch(remove(ownProps.id)),
   };
 }
 
